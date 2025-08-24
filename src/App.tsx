@@ -18,13 +18,16 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Get the base name from the current location or environment
+const basename = import.meta.env.PROD ? '/cicsso' : '';
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/cicsso">
+        <BrowserRouter basename={basename}>
           <Layout>
             <Routes>
               <Route path="/" element={<Home />} />

@@ -4,8 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/cicsso/' : '/',
+export default defineConfig(({ mode, command }) => ({
+  base: command === 'build' ? '/cicsso/' : '/',
   server: {
     host: "::",
     port: 8080,
@@ -18,6 +18,14 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
     },
   },
 }));
